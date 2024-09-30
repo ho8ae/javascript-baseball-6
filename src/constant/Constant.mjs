@@ -14,4 +14,4 @@ const ERROR_MESSAGE = Object.freeze({
     inputIncludeZeroError : "[ERROR] 입력값에 0은 포함될 수 없습니다.",
 });
 
-export default {GUIDE_MESSAGE,ERROR_MESSAGE}; //module 이해 필요
+export {GUIDE_MESSAGE,ERROR_MESSAGE}; //module 이해 필요
