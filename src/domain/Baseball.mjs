@@ -31,7 +31,9 @@ class BaseBall {
         return count - strikeCount;
     }
 
-
+    resetGame(){
+        this.#answer = RandomNumberGenerator.generateRandomNumber(3);
+    }
 
 
 }
