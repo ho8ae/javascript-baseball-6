@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../constant/Constant.mjs";
+import { ERROR_MESSAGE } from "../constant/Constant.js";
 
 const InputValidator = {
     validateUserNumber(input) {

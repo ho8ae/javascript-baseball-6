@@ -1,4 +1,4 @@
-import BaseballGameController from "./controller/BaseballGameController.mjs";
+import BaseballGameController from "./controller/BaseballGameController.js";
 
 
 

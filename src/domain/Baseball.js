@@ -1,4 +1,4 @@
-import RandomNumberGenerator from "../utils/RandomNumberGenerator.mjs";
+import RandomNumberGenerator from "../utils/RandomNumberGenerator.js";
 
 class BaseBall {
     #answer; //private 필드를 나타내는 문장이라고 함

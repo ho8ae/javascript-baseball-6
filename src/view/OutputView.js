@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { GUIDE_MESSAGE } from "../constant/Constant.mjs";
+import { GUIDE_MESSAGE } from "../constant/Constant.js";
 
 
 const OuputView = {
