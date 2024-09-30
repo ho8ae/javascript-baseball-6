@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE , STATIC_NUMBER} from "../constant/Constant.js";
+import { ERROR_MESSAGE , STATIC_NUMBER} from "../domain/Constant.js";
 
 const InputValidator = {
     validateUserNumber(input) {

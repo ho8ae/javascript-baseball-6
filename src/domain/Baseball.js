@@ -1,4 +1,5 @@
 import RandomNumberGenerator from "../utils/RandomNumberGenerator.js";
+import { STATIC_NUMBER } from "./Constant.js";
 
 class BaseBall {
     #answer; //private 필드를 나타내는 문장이라고 함
@@ -25,15 +26,17 @@ class BaseBall {
     getBallCount(input, strikeCount) {
         let count = 0;
 
-        for (let i = 0; i< input.length; i++){
-            if(this.#answer.includes(input[i])) count += 1;
+        for (let i = 0; i < input.length; i++) {
+            if (this.#answer.includes(input[i])) count += 1;
         }
 
         return count - strikeCount;
     }
 
-    resetGame(){
-        this.#answer = RandomNumberGenerator.generateRandomNumber(3);
+    resetGame() {
+        this.#answer = RandomNumberGenerator.generateRandomNumber(
+            STATIC_NUMBER.baseballNumberLength
+        );
     }
 
 
