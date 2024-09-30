@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+
 import Baseball from "../domain/Baseball.mjs";
 import RandomNumberGenerator from "../utils/RandomNumberGenerator.mjs";
 import InputView from "../view/InputView.mjs";
@@ -18,7 +18,7 @@ class BaseballGameController {
 
     startGame() {
         OutputView.printStartMessage();
-        this.InputValidator();
+        this.inputuserNumber();
         //함수 내에서 함수는 여러가지 사용을 하지 않기 위해 구조분해 할당
     }
 
@@ -27,7 +27,7 @@ class BaseballGameController {
             InputValidator.validateUserNumber(input); //유효성 검사 먼저
             const inputNumber = input.split("").map(Number);
             const strikeCount = this.#baseball.getStrikeCount(inputNumber);
-            const ballCount = this.#baseball.getballCount(inputNumber, strikeCount);
+            const ballCount = this.#baseball.getBallCount(inputNumber, strikeCount);
 
             return this.checkHint(strikeCount, ballCount);
         });
@@ -35,7 +35,7 @@ class BaseballGameController {
 
     inputRestart() {
         InputView.readRestartNumber((input) => {
-            InputValidator.readRestartNumber(input); //유효성 검사
+            InputValidator.validateRestartNumber(input); //유효성 검사
             if (input == "1") {
                 this.resetGame();
                 
