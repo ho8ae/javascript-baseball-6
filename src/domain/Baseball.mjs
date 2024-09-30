@@ -1,9 +1,10 @@
 import RandomNumberGenerator from "../utils/RandomNumberGenerator.mjs";
 
 class BaseBall {
-    #answer; //이게 잘 모르겠음. 
+    #answer; //private 필드를 나타내는 문장이라고 함
+    //오직 클래스 내부 메서드를 통해서만 접근 가능 !
 
-    constructor(radnomNumber) {
+    constructor(radnomNumber) { //new Baseball(randomNumber) 이런 구조에서 호출됨
         this.#answer = radnomNumber;
     }
 
