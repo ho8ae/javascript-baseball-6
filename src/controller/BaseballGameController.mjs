@@ -38,9 +38,9 @@ class BaseballGameController {
             InputValidator.readRestartNumber(input); //유효성 검사
             if (input == "1") {
                 this.resetGame();
-                this.inputUserNumber();
+                
             }
-            if (input == "2") return Console.close();
+            if (input == "2") return ;
         });
     }
 
@@ -55,6 +55,11 @@ class BaseballGameController {
         this.inputuserNumber();
 
         //함수 호출과 if만으로 반복문을 만들 수 있음 !!
+    }
+
+    resetGame(){
+        this.#baseball.resetGame();
+        this.inputUserNumber();
     }
 }
 
