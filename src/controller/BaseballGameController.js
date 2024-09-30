@@ -3,69 +3,62 @@ import RandomNumberGenerator from "../utils/RandomNumberGenerator.js";
 import InputValidator from "../utils/InputValidator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import { STATIC_NUMBER } from "../domain/Constant.js";
-
+import { StaticNumber } from "../domain/Constant.js";
 
 class BaseballGameController {
-    //여기서 모든 걸 controll. 함수만 호출 하는 느낌
+  #baseball;
 
-    #baseball;
+  constructor() {
+    this.#baseball = new Baseball(
+      RandomNumberGenerator.generateRandomNumber(
+        StaticNumber.BASEBALL_NUMBER_LENGTH
+      )
+    );
+  }
 
-    constructor() {
-        this.#baseball = new Baseball(
-            RandomNumberGenerator.generateRandomNumber(
-                STATIC_NUMBER.baseballNumberLength
-            )
-        );
+  async startGame() {
+    OutputView.printStartMessage();
+    await this.inputUserNumber();
+  }
+
+  async inputUserNumber() {
+    await InputView.readUserNumber((input) => {
+      InputValidator.validateUserNumber(input);
+      this.calculateCount(input);
+    });
+  }
+
+  async inputRestartNumber() {
+    await InputView.readRestartNumber((input) => {
+      InputValidator.validateRestartNumber(input);
+      if (input === StaticNumber.INPUT_RESTART_NUMBER) {
+        this.resetGame();
+      }
+      if (input === StaticNumber.INPUT_END_NUMBER) return;
+    });
+  }
+
+  calculateCount(input) {
+    const inputNumber = Array.from(input, Number);
+    const strikeCount = this.#baseball.getStrikeCount(inputNumber);
+    const ballCount = this.#baseball.getBallCount(inputNumber, strikeCount);
+
+    return this.checkHint(strikeCount, ballCount);
+  }
+
+  checkHint(strikeCount, ballCount) {
+    OutputView.printHintMessage(ballCount, strikeCount);
+
+    if (strikeCount === StaticNumber.BASEBALL_NUMBER_LENGTH) {
+      OutputView.printEndMessage();
+      return this.inputRestartNumber();
     }
+    this.inputUserNumber();
+  }
 
-    async startGame() {
-        OutputView.printStartMessage();
-        await this.inputUserNumber();
-        //함수 내에서 함수는 여러가지 사용을 하지 않기 위해 구조분해 할당
-    }
-
-    async inputUserNumber() {
-        await InputView.readUserNumber((input) => {
-            InputValidator.validateUserNumber(input);
-            this.calculateCount(input);
-        })
-    }
-
-
-    async inputRestartNumber() {
-        await InputView.readRestartNumber((input) => {
-            InputValidator.validateRestartNumber(input);
-            if (input === STATIC_NUMBER.inputRestartNumber) {
-                this.resetGame();
-            }
-            if (input === STATIC_NUMBER.inputEndNumber) return;
-        });
-    }
-
-    calculateCount(input) {
-        const inputNumber = Array.from(input, Number);
-        const strikeCount = this.#baseball.getStrikeCount(inputNumber);
-        const ballCount = this.#baseball.getBallCount(inputNumber, strikeCount);
-
-        return this.checkHint(strikeCount, ballCount);
-    }
-
-
-    checkHint(strikeCount, ballCount) {
-        OutputView.printHintMessage(ballCount, strikeCount);
-
-        if (strikeCount === STATIC_NUMBER.baseballNumberLength) {
-            OutputView.printEndMessage();
-            return this.inputRestartNumber();
-        }
-        this.inputUserNumber()
-    }
-
-    async resetGame() {
-        this.#baseball.getResetNumber();
-        await this.inputUserNumber();
-    }
+  async resetGame() {
+    this.#baseball.getResetNumber();
+    await this.inputUserNumber();
+  }
 }
-
 export default BaseballGameController;

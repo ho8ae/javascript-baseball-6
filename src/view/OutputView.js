@@ -1,26 +1,23 @@
 import { Console } from "@woowacourse/mission-utils";
-import { GUIDE_MESSAGE } from "../domain/Constant.js";
+import { GuideMessage } from "../domain/Constant.js";
 
+const OutputView = {
+  printStartMessage() {
+    Console.print(GuideMessage.START_GAME);
+  },
 
-const OuputView = {
-    printStartMessage(){
-        Console.print(GUIDE_MESSAGE.startGame);
-    },
+  printHintMessage(ballCount, strikeCount) {
+    const hint = [];
+    if (ballCount !== 0) hint.push(`${ballCount}볼`);
+    if (strikeCount !== 0) hint.push(`${strikeCount}스트라이크`);
+    if (ballCount === 0 && strikeCount === 0) hint.push(`낫싱`);
 
-    printHintMessage(ballCount, strikeCount){
-        const hint = [];
-        if(ballCount !== 0) hint.push(`${ballCount}볼`);
-        if(strikeCount !== 0) hint.push(`${strikeCount}스트라이크`);
-        if(strikeCount === 0 && ballCount === 0 ) hint.push(`낫싱`);
-  
-        
-        Console.print(hint.join(" "));
-    },
+    Console.print(hint.join(" "));
+  },
 
-    printEndMessage(){
-        Console.print(GUIDE_MESSAGE.correctNumber);
-    },
+  printEndMessage() {
+    Console.print(GuideMessage.CORRECT_NUMBER);
+  },
 };
 
-
-export default OuputView;
+export default OutputView;

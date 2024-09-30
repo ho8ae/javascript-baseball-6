@@ -1,21 +1,18 @@
 import { Console } from "@woowacourse/mission-utils";
-import { GUIDE_MESSAGE } from "../domain/Constant.js";
-
+import { GuideMessage } from "../domain/Constant.js";
 
 const InputView = {
-    //비동기함수 Async를 사용하여 callback을 통해 함수 호출 
+  async readUserNumber(callback) {
+    await Console.readLineAsync(GuideMessage.INPUT_NUMBER).then((input) => {
+      callback(input);
+    });
+  },
 
-    readUserNumber(callback) {
-        Console.readLineAsync(GUIDE_MESSAGE.inputNumber).then((input) => {
-            callback(input)
-        });
-    },
-
-    readRestartNumber(callback) {
-        Console.readLineAsync(GUIDE_MESSAGE.restartGame).then((input) => {
-            callback(input);
-        });
-    },
-}
+  async readRestartNumber(callback) {
+    await Console.readLineAsync(GuideMessage.RESTART_GAME).then((input) => {
+      callback(input);
+    });
+  },
+};
 
 export default InputView;

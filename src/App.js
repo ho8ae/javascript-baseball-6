@@ -1,9 +1,9 @@
 import BaseballGameController from "./controller/BaseballGameController.js";
-import { STATIC_NUMBER } from "./domain/Constant.js";
+import { StaticNumber } from "./domain/Constant.js";
 
 class App {
   #baseballGame = new BaseballGameController(
-    STATIC_NUMBER.baseballNumberLength
+    StaticNumber.BASEBALL_NUMBER_LENGTH
   );
 
   constructor() {}
