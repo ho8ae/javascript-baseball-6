@@ -13,7 +13,9 @@ class BaseballGameController {
 
     constructor() {
         this.#baseball = new Baseball(
-            RandomNumberGenerator.generateRandomNumber(3)
+            RandomNumberGenerator.generateRandomNumber(
+                STATIC_NUMBER.baseballNumberLength
+            )
         );
     }
 
@@ -26,7 +28,7 @@ class BaseballGameController {
     async inputUserNumber() {
         await InputView.readUserNumber((input) => {
             InputValidator.validateUserNumber(input);
-            this.calcaulateCount(input);
+            this.calculateCount(input);
         })
     }
 
@@ -34,14 +36,14 @@ class BaseballGameController {
     async inputRestartNumber() {
         await InputView.readRestartNumber((input) => {
             InputValidator.validateRestartNumber(input);
-            if (input === STATIC_NUMBER.restartNumberLength) {
+            if (input === STATIC_NUMBER.inputRestartNumber) {
                 this.resetGame();
             }
-            if (input === STATIC_NUMBER.possibleEndOrNotNumber) return;
+            if (input === STATIC_NUMBER.inputEndNumber) return;
         });
     }
 
-    calcaulateCount(input) {
+    calculateCount(input) {
         const inputNumber = Array.from(input, Number);
         const strikeCount = this.#baseball.getStrikeCount(inputNumber);
         const ballCount = this.#baseball.getBallCount(inputNumber, strikeCount);
@@ -50,22 +52,20 @@ class BaseballGameController {
     }
 
 
-    checkHint(ballCount, strikeCount) {
+    checkHint(strikeCount, ballCount) {
         OutputView.printHintMessage(ballCount, strikeCount);
 
         if (strikeCount === STATIC_NUMBER.baseballNumberLength) {
             OutputView.printEndMessage();
             return this.inputRestartNumber();
         }
-        this.inputUserNumber
+        this.inputUserNumber()
     }
 
     async resetGame() {
         this.#baseball.getResetNumber();
         await this.inputUserNumber();
     }
-
-
 }
 
 export default BaseballGameController;

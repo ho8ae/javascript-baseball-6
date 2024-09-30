@@ -1,14 +1,14 @@
 const GUIDE_MESSAGE = Object.freeze({ //freeze 이해 필요
     startGame: "숫자 야구 게임을 시작합니다.",
     restartGame: "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요\n ",
-    inputNumber: "숫자를 입력해주세요",
+    inputNumber: "숫자를 입력해주세요 : ",
     correctNumber: "3개의 숫자를 모두 맞히셨습니다! 게임 종료",
 });
 
 const ERROR_MESSAGE = Object.freeze({
     restartNumberError: "[ERROR] 입력값은 1 또는 2로 이루어진 숫자여야 합니다.",
     restartCountError: "[ERROR] 입력값은 1 또는 2, 둘 중 하나여야 합니다.",
-    inputLengthError: "[ERROR] 입력값은 3자리로 구성 되어야 합니다.",
+    inputLengthError: "[ERROR] 입력값은 3자리로 구성되어야 합니다.",
     inputNumberError: "[ERROR] 입력값은 숫자로 구성되어야 합니다.",
     inputDuplicateError: "[ERROR] 입력값은 모두 다른 숫자로 구성되어야 합니다.",
     inputIncludeZeroError: "[ERROR] 입력값에 0은 포함될 수 없습니다.",
@@ -17,10 +17,10 @@ const ERROR_MESSAGE = Object.freeze({
 const STATIC_NUMBER = Object.freeze({
     inputRestartNumber: "1",
     inputEndNumber: "2",
-    baseballNumberLength: "3",
-    restartNumberLength : "1",
-    possibleBaseballNumber: "/[0-9]/g",
-    possibleEndOrNotNumber: "/1|2/g",
+    baseballNumberLength: 3,
+    restartNumberLength: 1,
+    possibleBaseballNumber: /[1-9]/g,
+    possibleEndOrNotNumber:  /1|2/g,
 })
 
-export { GUIDE_MESSAGE, ERROR_MESSAGE ,STATIC_NUMBER }; //module 이해 필요
+export { GUIDE_MESSAGE, ERROR_MESSAGE, STATIC_NUMBER }; //module 이해 필요

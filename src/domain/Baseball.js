@@ -5,8 +5,8 @@ class BaseBall {
     #answer; //private 필드를 나타내는 문장이라고 함
     //오직 클래스 내부 메서드를 통해서만 접근 가능 !
 
-    constructor(radnomNumber) { //new Baseball(randomNumber) 이런 구조에서 호출됨
-        this.#answer = radnomNumber;
+    constructor(randomNumber) { //new Baseball(randomNumber) 이런 구조에서 호출됨
+        this.#answer = randomNumber;
     }
 
 
@@ -49,7 +49,7 @@ class BaseBall {
       }
     
 
-    resetGame() {
+    getResetNumber() {
         this.#answer = RandomNumberGenerator.generateRandomNumber(
             STATIC_NUMBER.baseballNumberLength
         );
