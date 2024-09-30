@@ -22,5 +22,5 @@ const GuideMessage = Object.freeze({
     POSSIBLE_BASEBALL_NUMBER: /[1-9]/g,
     POSSIBLE_END_OR_NOT_NUMBER: /1|2/g,
   });
-  
+   
   export { GuideMessage, ErrorMessage, StaticNumber };
